@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes>
+	<route url="/admin/" module="Posts" action="index" />
+
+	<route url="/admin/posts" module="Posts" action="index" />
+	<route url="/admin/post/([a-z]+)" module="Posts" action="single" vars="modType" />
+	<route url="/admin/post/([a-z]+)/([0-9]+)" module="Posts" action="single" vars="modType,id" />
+
+	<route url="/admin/medias" module="Medias" action="index" />
+	<route url="/admin/media/([a-z]+)" module="Medias" action="single" vars="modType" />
+	<route url="/admin/media/([a-z]+)/([0-9]+)" module="Medias" action="single" vars="modType,id" />
+
+</routes> 

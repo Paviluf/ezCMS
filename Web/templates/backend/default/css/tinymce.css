@@ -1,0 +1,58 @@
+/* ------------------------------------------------------------------------- *
+*  Base Styles
+/* ------------------------------------------------------------------------- */
+body {
+	font-family: Arial, sans-serif;
+	font-size: 1em;
+	background-color: #FFF;
+	margin: 0px;
+	padding: 10px;
+	color: #333;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  Ezoden
+/* ------------------------------------------------------------------------- */
+.supportWrap {
+	 width: 290px;
+	 margin: auto;
+}
+.support {
+	display: inline-block;
+	width: 290px;
+	margin: 5px auto 5px auto;
+	background-color: #FFA356;
+	color: #FFF;
+}
+.supportImg {
+	float: left;
+	width: 145px;
+	height: 88px;
+	text-align: left;
+}
+.supportTxt {
+	float: right;
+	width: 145px;
+	height: 88px;
+	text-align: center;
+}
+.supportTxtOff {
+	background-color: #D0D0D0;
+}
+.supportSupport {
+	display:inline-block;padding-bottom:3px;font-size:0.9em;font-style:italic;
+}
+.supportSiteName {
+	display:inline-block;font-family:ashregular;padding:3px;
+}
+.supportPrice {
+	display:inline-block;padding-top:3px;font-size:0.9em;font-style:italic;
+}
+.coffee {
+	display: inline-block;
+	width: 350px;
+}
+
+.buyCoffee {
+	clear: both;
+}

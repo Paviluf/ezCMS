@@ -1,0 +1,42 @@
+########################################
+# Set up UTF-8 encoding
+########################################
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .php
+
+#php_value default_charset "UTF-8"
+
+#php_value iconv.input_encoding "UTF-8"
+#php_value iconv.internal_encoding "UTF-8"
+#php_value iconv.output_encoding "UTF-8"
+
+php_value mbstring.internal_encoding UTF-8
+#php_value mbstring.http_output UTF-8
+#php_value mbstring.encoding_translation On
+#php_value mbstring.func_overload 6
+
+########################################
+# Locale settings
+########################################
+# See: http://php.net/manual/en/timezones.php
+php_value date.timezone "Europe/Paris"
+
+SetEnv   LC_ALL  en_US.UTF-8
+
+########################################
+# Apache
+########################################
+Options All +FollowSymLinks -Indexes -MultiViews
+RewriteEngine on
+
+########################################
+# URL Rewriting Rules
+########################################
+# Backend Rules
+RewriteRule ^admin/(.*)$ index.php?app=backend [QSA,L]
+
+# If file exist don't rewrite url
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Frontend Rules
+RewriteRule ^(.*)$ index.php?app=frontend [QSA,L]

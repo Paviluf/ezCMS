@@ -1,0 +1,1004 @@
+/**
+ *  Default style CSS
+ */
+
+/* Colors used
+EAEAEA
+	body background-color 
+333
+	body color 
+3B8DBD
+	a color 
+33363B
+	header background-color 
+FFF
+	header h1 color 
+	header nav li.menuSelected a color
+	header .bar-nav-toggle background-color 
+CCC
+	header nav li a color
+EEE 
+	header nav li a:hover color
+FDFDFD
+	.sidebar background-color
+	.content background-color
+DDDDDD
+	.content box-shadow
+*/
+
+/* ------------------------------------------------------------------------- *
+ *  Fonts
+/* ------------------------------------------------------------------------- */
+
+/*  Font : Ash */
+@font-face {
+	font-family: 'ashregular';
+	src: url('/fonts/ash-webfont.eot');
+	src: url('/fonts/ash-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/ash-webfont.woff') format('woff'), url('/fonts/ash-webfont.ttf') format('truetype'), url('/fonts/ash-webfont.svg#ashregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  Base Styles
+/* ------------------------------------------------------------------------- */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	font-size: 0.98em;
+	line-height: 1.465;
+	background-color: #E8EAEB;
+	color: #445263;
+}
+.main-wrapper {
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, p, div, h1, h2, h3, h4, h5, h6 {
+	display: block;
+	box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Oswald";
+	font-weight: normal;
+}
+h1 {
+	text-overflow: ellipsis;
+	width: 100%;
+	min-height: 42px;
+	margin: 0 0 10px 0;
+	line-height: 42px;	/*background-color: #3B8DBD;*/
+	color: #444;
+	font-size: 1.8em;
+	font-weight: 400;
+}
+h2 {
+}
+h3 {
+	font-size: 1.2em;
+	font-weight: 400;
+	line-height: 1.2em;
+	margin-bottom: 10px;
+	color: #FC661D;
+}
+h4 {
+	padding-left: 15px;
+}
+h5 {
+}
+h6 {
+}
+article:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+a {
+	text-decoration: none;
+	color: #0053F9;	/*color: #39C;*/
+}
+a:hover {
+	color: #F90053;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+figure {
+	margin: auto;
+}
+ul {
+	margin: 3px 0;
+	padding-left: 10px;
+	list-style: none;
+}
+ul ul {
+	margin: 2px 0 0 0;
+	padding-left: 15px;
+}
+li {
+	margin: 0;
+	padding-top: 5px;
+	list-style-type: none;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+figcaption {
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+}
+code {
+	display: block;
+	padding: 5px 0 5px 10px;
+	margin: 10px 0 0 0;
+	font-family: monospace;
+	background-color: black;
+	color: white;
+}
+p {
+	text-align: justify;
+}
+.text-center {
+	text-align: center;
+}
+.box {
+	padding: 10px 15px 10px 15px;
+	margin: 0 0 20px 0px;
+	background-color: #FFF;
+	border: 1px solid #D8D8D8;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  Vertical Alignment
+/* ------------------------------------------------------------------------- */
+.flexbox-container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* OLD */
+.vertical-align-wrapper {
+
+	/* set the height of the element which contains what you want to center */ 
+	height: 100%;	/* these styles are optional, to set width horizontally center the page */
+
+	/* width: 100%; */
+	margin: 0 auto;
+}
+.vertical-align-wrapper:before, .vertical-align-inner {
+
+	/* these are the important styles for the centered element: */ 
+	display: inline-block;
+	vertical-align: middle;	/*width: 100%;*/
+}
+.vertical-align-wrapper:before {
+
+	/* this is the important part */ 
+	content: '';
+	display: inline-block;
+	width: 0;
+	height: 100%;
+	vertical-align: middle;	/* this just takes care of whitespace added by having display:inline-block (there are other methods) */
+	margin-left: -0.25em;
+}
+
+/* END OLD */
+
+/* ------------------------------------------------------------------------- *
+ *  Header
+/* ------------------------------------------------------------------------- */
+header {
+	width: 100%;
+	min-width: 1160px;
+	height: 42px;
+	background-color: #41464E;
+	margin: 0;
+	border-bottom: 2px solid #2E2E2E;
+	box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.4);
+}
+
+/*  Header Title */
+header h1 {
+	float: left;
+	width: auto;
+	margin: 0;
+	padding: 0 15px 0 10px;
+	line-height: 42px;
+	font-family: 'ashregular';
+	font-size: 1.6em;
+	font-weight: bold;
+	color: #FFF;
+}
+
+/*  Toggle Menu
+/* ------------------------------------ */
+header .header-title_nav-toggle {
+	float: left;
+}
+header .nav-toggle {
+	display: none;
+	height: 42px;
+	line-height: 42px;
+	cursor: pointer;
+}
+
+/*  Header Menu
+/* ------------------------------------ */
+header nav {
+	float: left;
+}
+header nav ul {
+	margin: 0;
+	padding: 0;
+}
+header nav li {
+	display: inline-block;
+	padding-top: 0;
+}
+header nav li {
+	font-family: 'Oswald';
+	vertical-align: middle;
+	padding: 0;
+	line-height: 42px;
+	font-size: 1em;
+	color: #FFF;
+	border-right: 1px solid #3D3D3D;
+}
+header nav li a {
+	display: block;
+	height: 100%;
+	margin: 0px;
+	padding: 0 15px;
+	color: #FFF;
+}
+header nav li a:hover {
+	color: #FFF;
+	background-color: #E03F00;
+}
+header nav li.menuSelected {
+	background-color: #E03F00;
+}
+header .menu-header-a {
+	display: block;
+}
+header .bar-nav-toggle {
+	width: 40%;
+	height: 4px;
+	margin: 0 0 4px 0;
+	background-color: #FFF;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Base Structure
+* ------------------------------------------------------------------------- */
+.version {
+	text-align: right;
+	color: rgba(0, 0, 0, 0.1);
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: bold
+}
+.container-inner {
+	position: relative;	/*width: 100%;
+	min-width: 320px;
+	max-width: 1160px;*/
+	width: 1160px;
+	margin: 0 auto;
+}
+.container-inner:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.two-columns {
+	display: flex;
+	flex-flow: row	wrap;	/*background-color: #FDFDFD;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);*/
+	margin: 0 0 10px 0;
+}
+.two-columns:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.two-columns > .sidebar {
+	width: 336px;
+	padding: 0;
+	margin: 0 0 10px 15px;
+	order: 2;
+}
+.two-columns > .content {
+	width: 785px;
+	min-height: 740px;
+	padding: 15px 10px 10px 10px;
+	margin: 0 0 10px 0;
+	word-wrap: break-word;
+	order: 1;
+	background-color: #FFF;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Posts title list (Blog)
+* ------------------------------------------------------------------------- */
+h1.index-title {
+	text-transform: uppercase;
+}
+.article-title-wrap {
+	position: relative;
+	padding: 0 0 10px 0;
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #DEDEDE;
+}
+.article-title-wrap:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.article-image {
+	float: left;
+	position: relative;
+	width: 30%;
+	height: 125px;
+	margin: 0;
+	overflow: hidden;
+}
+.article-image img {
+	width: 100%;
+}
+.article-title {
+	float: left;
+	position: relative;
+	width: 65%;
+	height: 125px;
+	padding: 0 20px 0 20px;
+}
+.article-title-content {
+	height: 70px;
+	padding: 10px 0 0 0;
+	font-size: 0.9em;
+	color: #727272;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.article-title-date {
+	height: 20px;
+	padding: 0;
+	font-size: 0.7em;
+	color: #B8B8B8;
+	text-align: right;
+}
+.article-title h2 {
+	height: 35px;
+	line-height: 35px;
+	margin: 0;
+	color: #444;
+	font-size: 1.2em;
+	font-weight: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Content
+* ------------------------------------------------------------------------- */
+h1.content-title {
+	font-family: 'Oswald';
+	text-overflow: ellipsis;
+	width: auto;
+	min-height: 42px;
+	padding-left: 20px;
+	margin: 0 0 10px 0;
+	line-height: 42px;
+	color: #444;
+	font-size: 1.8em;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+h2.content-child-title {
+	font-family: 'Oswald';
+	text-overflow: ellipsis;
+	width: auto;
+	min-height: 32px;
+	padding-left: 45px;
+	margin: 0 0 10px 0;
+	line-height: 32px;
+	color: #444;
+	font-size: 1.2em;
+	font-weight: normal;
+}
+.postMeta {
+	margin: 15px 0 0 0;
+	font-style: italic;
+	font-size: 0.75em;
+	color: #9E9E9E;
+}
+.postMeta a {
+	color: #9E9E9E;
+}
+.postMetaWrap {
+	padding: 0px 20px;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Posts List
+* ------------------------------------------------------------------------- */
+
+/*  Posts List pagination
+/* ------------------------------------ */
+.pagination a {
+	color: #33363B;
+	font-weight: bold;
+}
+.pagination-page-nb {
+	float: left;
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+}
+.pagination-page-selected {
+	color: #9D0000;
+}
+.pagination-pages-wrap {
+	display: inline-block;
+	margin: auto;
+	height: 30px;
+	line-height: 30px;
+}
+.pagination-page-prev {
+	float: left;
+	width: 25%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #EAEAEA;
+	color: #33363B;
+}
+.pagination-pages {
+	float: left;
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #F0F0F0;
+	color: #33363B;
+}
+.pagination-page-next {
+	float: left;
+	width: 25%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #EAEAEA;
+	color: #33363B;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Post
+* ------------------------------------------------------------------------- */
+article {
+	padding: 0 20px 0 20px;
+}
+
+/*  Post Summary
+/* ------------------------------------ */
+.summary {
+	font-size: 0.9em;
+	line-height: 1.1em;
+}
+.summary a {
+	color: #727272;
+}
+.summary a:hover {
+	color: #FF8356;
+}
+.summary h3 {
+	margin: 0 0 0 10px;
+}
+a.summary-selected {
+	color: #F73939;
+	font-style: italic;
+}
+
+/*  Post pagination
+/* ------------------------------------ */
+.post-prev-next {
+	width: 100%;
+	height: 64px;
+	border-top: 1px solid #E6E6E6;
+	border-bottom: 1px solid #E6E6E6;
+	margin: 10px 0 0 0;
+	clear: both;
+}
+.post-prev-next:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.post-prev {
+	float: left;
+	width: 50%;
+	height: 64px;
+}
+.post-next {
+	float: right;
+	width: 50%;
+	height: 64px;
+}
+.post-label {
+	position: relative;
+	height: 32px;
+	margin: 0;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.post-title {
+	height: 32px;
+	line-height: 32px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.post-label-left-bottom {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	padding-left: 20px;
+	color: #333;
+}
+.post-label-right-bottom {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding-right: 20px;
+	color: #333;
+}
+.post-prev .post-title {
+	padding-left: 20px;
+	text-align: left;
+}
+.post-next .post-title {
+	padding-right: 20px;
+	text-align: right;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Carousel
+* ------------------------------------------------------------------------- */
+.carousel-wrapper {
+	width: 100%;
+	height: 250px;
+	margin: 0 0 10px 0;
+	background: #FAFAFA;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Ads
+* ------------------------------------------------------------------------- */
+.adsSidebarTop {
+	width: 300px;
+	margin: 15px auto 0 auto;
+}
+
+/* ------------------------------------------------------------------------- *
+*  Footer
+* ------------------------------------------------------------------------- */
+footer {
+	width: 100%;
+	min-width: 1160px;
+	margin: 25px 0 0 0;
+}
+
+/*  Footer Top */
+footer .footer-top {
+	min-height: 140px;
+	background-color: #33363B;
+}
+
+/*  Footer Bottom */
+footer .footer-bottom {
+	min-height: 90px;
+	background: linear-gradient(to bottom, #515159 0px, #45464B 100%) repeat scroll 0 0 transparent;
+	margin: 0 auto;
+	border-top: 5px solid #E03F00;
+	padding: 12px 0;
+	color: #333;
+}
+footer .footer-infos {
+	padding: 30px 30px 20px 30px;
+	color: #CCC;
+}
+footer .footer-infos:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+footer .footer-infos-one {
+	float: left;
+	width: 33%;
+}
+footer .footer-infos-two {
+	float: right;
+	width: 33%;
+}
+footer .footer-infos-two p {
+	text-align: right;
+}
+footer a {
+	color: #CCC;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  AdBlockBlock
+/* ------------------------------------------------------------------------- */
+#msgAdblock {
+	width: 280px;
+	display: none;
+	font-size: 0.9em;
+	margin: 15px auto;
+	position: relative;
+}
+#msgAdblock h1 {
+	font-size: 1.1em;
+	padding: 0;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  Sidebar
+/* ------------------------------------------------------------------------- */
+.posts-from-forum {
+}
+.posts-from-forum-wrap {
+	width: 310px;
+	margin: 10px 0 10px 3px;
+}
+.posts-from-forum-topic {
+	height: 22px;
+	line-height: 22px;
+	padding: 0 0 0 15px;
+	color: #727272;
+	font-size: 0.9em;
+}
+.posts-from-forum-topic a {
+	color: #727272;
+}
+.posts-from-forum-topic a:hover {
+	color: #FF8356;
+}
+.support {
+	margin-bottom: 0;
+}
+.support p {
+	margin: 0 0 0 15px;
+}
+
+/* ------------------------------------------------------------------------- *
+ *  RESPONSIVE
+/* ------------------------------------------------------------------------- */
+
+/* Mobile (Medium Resolution) : 1024 to 1159px
+/* ------------------------------------------------------------------------- */
+
+/*
+@media only screen and (min-width: 1024px) and (max-width: 1159px) {
+
+header {
+	width: 100%;
+	min-width: 1024px;
+}
+
+.container-inner {
+	width: 100%;
+}
+
+.two-columns > .content {
+	width: 65%;
+}
+
+footer {
+	width: 100%;
+	min-width: 1024px;
+	margin: 25px 0 0 0; 
+}
+
+
+}
+*/
+
+/* Mobile (Medium Resolution) : 720 to 1023px (720px, 768px)
+/* ------------------------------------------------------------------------- */
+@media only screen and (min-width:720px) and (max-width:1159px) {
+	header {
+		width: 100%;
+		min-width: 100%;
+	}
+	.container-inner {
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	.two-columns {
+		padding: 0;
+	}
+	.two-columns > .sidebar {
+		order: 2;
+		width: 100%;
+	}
+	.two-columns > .content {
+		order: 1;
+		width: 100%;
+		margin: 10px 0 10px 0;
+	}
+	footer {
+		width: 100%;
+		min-width: 100%;
+		margin: 25px 0 0 0;
+	}
+}
+
+/* Mobile (Medium Resolution) : 480 to 719px (480px, 540px, 640px)
+/* ------------------------------------------------------------------------- */
+@media only screen and (min-width:480px) and (max-width:719px) {
+	header {
+		width: 100%;
+		min-width: 100%;
+		min-height: 40px;
+		height: 100%;
+	}
+	header .header-title_nav-toggle:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	header .header-title_nav-toggle {
+		float: none;
+	}
+	header .nav-toggle {
+		display: flex;
+		float: right;
+		width: 60px;
+		height: 40px;
+		border-left: 1px solid rgba(255, 255, 255, 0.06);
+	}
+	header nav {
+		float: none;
+	}
+	header nav li {
+		display: block;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+	header .menu-header-a {
+		display: none;
+	}
+	header .menu-header-b {
+		display: block;
+	}
+	.container-inner {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.two-columns {
+		padding: 0;
+	}
+	.two-columns > .sidebar {
+		order: 2;
+		width: 100%;
+		margin: 10px 0 10px 0;
+	}
+	.two-columns > .content {
+		order: 1;
+		width: 100%;
+		min-height: initial;
+		padding: 15px 5px 15px 5px;
+	}
+	article {
+		padding: 0;
+	}
+	h1.content-title {
+		padding-left: 0;
+	}
+	h1.index-title {
+		width: auto;
+		padding-left: 10px;
+		margin: 0 0 10px 0;
+	}
+	.article-title-wrap {
+	}
+	.article-title-content {
+		height: 85px;
+		padding: 10px 0 0 0;
+		font-size: 0.9em;
+		color: #727272;
+	}
+	.article-image {
+		float: none;
+		width: 100%;
+		height: 125px;
+		margin: 0;
+	}
+	.article-title {
+		float: none;
+		width: 100%;
+		height: auto;
+		padding: 0;
+	}
+	.post-prev-next {
+		height: 100%;
+	}
+	.summary {
+		width: 100%;
+		margin: 10px 0 10px 0;
+	}
+	.post-prev {
+		width: 100%;
+		height: 64px;
+	}
+	.post-next {
+		width: 100%;
+		height: 64px;
+	}
+	.adsSidebarTop {
+		width: 100%;
+		margin: 15px auto 0 auto;
+	}
+	footer {
+		width: 100%;
+		min-width: 100%;
+		margin: 25px 0 0 0;
+	}
+	#msgAdblock {
+		width: 100%;
+		margin: 0;
+	}
+	.summary li {
+		line-height: 34px;
+	}
+	.posts-from-forum-wrap {
+		width: 100%;
+		margin: 10px auto 10px auto;
+	}
+	.posts-from-forum-topic, .posts-from-forum-topic-alt {
+		height: 34px;
+		line-height: 34px;
+	}
+}
+
+/* Mobile (Low Resolution) : 0 to 479px (320px)
+/* ------------------------------------------------------------------------- */
+@media only screen and (max-width:479px) {
+	header {
+		width: 100%;
+		min-width: 100%;
+		min-height: 40px;
+		height: 100%;
+	}
+	header .header-title_nav-toggle:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	header .header-title_nav-toggle {
+		float: none;
+	}
+	header .nav-toggle {
+		display: flex;
+		float: right;
+		width: 60px;
+		height: 40px;
+		border-left: 1px solid rgba(255, 255, 255, 0.06);
+	}
+	header nav {
+		float: none;
+	}
+	header nav li {
+		display: block;
+		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+	header .menu-header-a {
+		display: none;
+	}
+	header .menu-header-b {
+		display: block;
+	}
+	.container-inner {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.two-columns {
+		padding: 0;
+	}
+	.two-columns > .sidebar {
+		order: 2;
+		width: 100%;
+		margin: 10px 0 10px 0;
+	}
+	.two-columns > .content {
+		order: 1;
+		width: 100%;
+		min-height: initial;
+		padding: 15px 0px 15px 0px;
+	}
+	.content p {
+		padding: 0 5px 0 5px;
+	}
+	article {
+		padding: 0;
+	}
+	h1.content-title {
+		padding-left: 0;
+	}
+	h1.index-title {
+		width: auto;
+		padding-left: 10px;
+		margin: 0 0 10px 0;
+	}
+	.article-title-wrap {
+	}
+	.article-title-content {
+		height: 85px;
+		padding: 10px 0 0 0;
+		font-size: 0.9em;
+		color: #727272;
+	}
+	.article-image {
+		float: none;
+		width: 100%;
+		height: 125px;
+		margin: 0;
+	}
+	.article-title {
+		float: none;
+		width: 100%;
+		height: auto;
+		padding: 0;
+	}
+	.post-prev-next {
+		height: 100%;
+	}
+	.summary {
+		width: 100%;
+		margin: 10px 0 10px 0;
+	}
+	.post-prev {
+		width: 100%;
+		height: 64px;
+	}
+	.post-next {
+		width: 100%;
+		height: 64px;
+	}
+	.adsSidebarTop {
+		width: 100%;
+		margin: 15px auto 0 auto;
+	}
+	footer {
+		width: 100%;
+		min-width: 100%;
+		margin: 25px 0 0 0;
+	}
+	#msgAdblock {
+		width: 100%;
+		margin: 0;
+	}
+	.summary li {
+		line-height: 34px;
+	}
+	.posts-from-forum-wrap {
+		width: 100%;
+		margin: 10px auto 10px auto;
+	}
+	.posts-from-forum-topic, .posts-from-forum-topic-alt {
+		height: 34px;
+		line-height: 34px;
+	}
+}

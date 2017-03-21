@@ -1,0 +1,302 @@
+# Don't forget to check it when you put it in prod
+
+########################################
+# MAINTENANCE
+########################################
+#RewriteEngine on
+## Don't redirect if the query is on the file which the redirction is done
+#RewriteCond %{REQUEST_URI} !/maintenance.html$ 
+## Allowed IP
+#RewriteCond %{REMOTE_ADDR} !^85\.171\.90\.75$ 
+## Redirect to this file
+#RewriteRule $ /maintenance.html [R=302,L] 
+
+########################################
+# Webfont access
+########################################
+# Allow access from all domains for webfonts.
+# Alternatively you could only whitelist your
+# subdomains like "subdomain.example.com".
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+########################################
+# Proper MIME type for all files
+########################################
+# JavaScript
+# Normalize to standard type (it's sniffed in IE anyways) 
+# tools.ietf.org/html/rfc4329#section-7.2
+AddType application/javascript         js
+
+# Audio
+AddType audio/ogg                      oga ogg
+AddType audio/mp4                      m4a
+
+# Video
+AddType video/ogg                      ogv
+AddType video/mp4                      mp4 m4v
+AddType video/webm                     webm
+
+# SVG.
+#   Required for svg webfonts on iPad
+#   twitter.com/FontSquirrel/status/14855840545
+AddType image/svg+xml                  svg svgz 
+AddEncoding gzip                       svgz
+                                       
+# Webfonts                             
+AddType application/vnd.ms-fontobject  eot
+AddType application/x-font-ttf		   ttf ttc
+AddType font/opentype                  otf
+AddType application/x-font-woff        woff
+
+# Assorted types                                      
+AddType image/x-icon                   ico
+AddType image/webp                     webp
+AddType text/cache-manifest            appcache manifest
+AddType text/x-component               htc
+AddType application/x-chrome-extension crx
+AddType application/x-xpinstall        xpi
+AddType application/octet-stream       safariextz
+AddType text/x-vcard                   vcf
+
+########################################
+# Gzip compression
+########################################
+<IfModule mod_deflate.c>
+
+# Force deflate for mangled headers developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+    RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+  </IfModule>
+</IfModule>
+
+# HTML, TXT, CSS, JavaScript, JSON, XML, HTC:
+<IfModule filter_module>
+  FilterDeclare   COMPRESS
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/html
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/css
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/plain
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $text/x-component
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/javascript
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/json
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/xhtml+xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/rss+xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/atom+xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/vnd.ms-fontobject
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $image/svg+xml
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $application/x-font-ttf
+  FilterProvider  COMPRESS  DEFLATE resp=Content-Type $font/opentype
+  FilterChain     COMPRESS
+  FilterProtocol  COMPRESS  DEFLATE change=yes;byteranges=no
+</IfModule>
+
+<IfModule !mod_filter.c>
+  # Legacy versions of Apache
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+  AddOutputFilterByType DEFLATE application/xhtml+xml application/rss+xml application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+</IfModule>
+
+</IfModule>
+
+########################################
+# Expires headers (for better cache control)
+########################################
+# These are pretty far-future expires headers.
+# They assume you control versioning with cachebusting query params like
+#   <script src="application.js?20100608">
+# Additionally, consider that outdated proxies may miscache 
+#   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+
+# If you don't use filenames to version, lower the CSS  and JS to something like
+#   "access plus 1 week" or so.
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+# Perhaps better to whitelist expires rules? Perhaps.
+  ExpiresDefault                          "access plus 1 month"
+
+# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+
+# Your document html 
+  ExpiresByType text/html                 "access plus 0 seconds"
+  
+# Data
+  ExpiresByType text/xml                  "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType application/json          "access plus 0 seconds"
+
+# Feed
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+  ExpiresByType application/atom+xml      "access plus 1 hour"
+
+# Favicon (cannot be renamed)
+  ExpiresByType image/x-icon              "access plus 1 week" 
+
+# Media: images, video, audio
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/jpg                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType video/ogg                 "access plus 1 month"
+  ExpiresByType audio/ogg                 "access plus 1 month"
+  ExpiresByType video/mp4                 "access plus 1 month"
+  ExpiresByType video/webm                "access plus 1 month"
+  
+# HTC files  (css3pie)
+  ExpiresByType text/x-component          "access plus 1 month"
+  
+# Webfonts
+  ExpiresByType font/truetype             "access plus 1 month"
+  ExpiresByType font/opentype             "access plus 1 month"
+  ExpiresByType application/x-font-woff   "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    
+# CSS and JavaScript
+  ExpiresByType text/css                  "access plus 1 month"
+  ExpiresByType application/javascript    "access plus 1 month"
+  
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+  
+</IfModule>
+
+########################################
+# ETag removal
+########################################
+# FileETag None is not enough for every server.
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+
+# Since we're sending far-future expires, we don't need ETags for
+# static content.
+#   developer.yahoo.com/performance/rules.html#etags
+FileETag None
+
+########################################
+# Apache
+########################################
+Options All -Indexes -MultiViews
+
+# PHP version selected in .ovhconfig for OVH or in cpanel for PlanetHoster
+#SetEnv PHP_VER 5_6
+
+# Don't work on OVH
+#php_value register_globals 0
+#php_flag magic_quotes_gpc Off
+# Work on OVH
+SetEnv REGISTER_GLOBALS 0
+SetEnv MAGIC_QUOTES 0
+
+SetEnv ZEND_OPTIMIZER 1
+
+########################################
+# Start rewrite engine
+########################################
+# Turning on the rewrite engine is necessary for the following rules and features.
+# FollowSymLinks must be enabled for this to work.
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+</IfModule>
+
+########################################
+# URL Rewriting Rules
+########################################
+# Doesn't work ?
+# To rewrite "example.com -> www.example.com" uncomment the following lines.
+# Be aware that the following rule might not be a good idea if you
+# use "real" subdomains for certain parts of your website.
+#<IfModule mod_rewrite.c>
+#  RewriteCond %{HTTPS} !=on
+#  RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+#  RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#</IfModule>
+
+# Only www
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Specific to ezcms
+# Backend Rules
+RewriteRule ^admin/(.*)$ index.php?app=backend [QSA,L]
+
+# If file exist don't rewrite url
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Frontend Rules
+RewriteRule ^(.*)$ index.php?app=frontend [QSA,L]
+
+########################################
+# UTF-8 encoding
+########################################
+# Use UTF-8 encoding for anything served text/plain or text/html
+AddDefaultCharset utf-8
+
+# Force UTF-8 for a number of file formats
+AddCharset utf-8 .html .css .js .xml .json .rss .atom .php
+
+# Don't work on OVH
+#php_value default_charset "UTF-8"
+
+# Needed ? Don't work on OVH
+#php_value iconv.input_encoding "UTF-8"
+#php_value iconv.internal_encoding "UTF-8"
+#php_value iconv.output_encoding "UTF-8"
+
+# Don't work on OVH
+#php_value mbstring.language UTF-8
+#php_value mbstring.internal_encoding UTF-8
+#php_value mbstring.http_output UTF-8
+#php_value mbstring.encoding_translation On
+#php_value mbstring.func_overload 6
+# Work on OVH - Not sure for this
+SetEnv MBSTRING.LANGUAGE UTF-8
+SetEnv MBSTRING.INTERNAL_ENCODING UTF-8
+SetENV MBSTRING.HTTP_OUTPUT UTF-8
+SetENV MBSTRING.ENCODING_TRANSLATION 1
+SetENV MBSTRING.FUNC_OVERLOAD 6
+
+########################################
+# Locale settings
+########################################
+# See: http://php.net/manual/en/timezones.php
+# Don't work on OVH
+#php_value date.timezone "Europe/Paris"
+# Work on OVH - Not sure for this
+SetEnv TZ Europe/Paris
+
+SetEnv LC_ALL en_US.UTF-8
+
+########################################
+# Remove PHPSESSID
+########################################
+# Don't work on OVH
+#php_flag session.use_trans_sid off
+#php_flag session.use_only_cookies on
+# Work on OVH
+SetEnv SESSION_USE_TRANS_SID 0
+#  Work on OVH - Not sure for this
+SetEnv SESSION_USE_ONLY_COOKIES 1
+
+########################################
+# Prevent hotlinking
+########################################
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?ezoden.com/.*$ [NC]
+RewriteRule \.(gif|jpg|jpeg|png|js|css)$ - [F]
